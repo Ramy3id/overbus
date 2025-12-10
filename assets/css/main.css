@@ -1,0 +1,472 @@
+/*
+ * File: main.css
+ * Description: Consolidated custom styles for all HTML pages.
+ * Note: This file contains custom variables and specific component styles.
+ * It is designed to work alongside the Tailwind CSS CDN (for e-commerce, account, checkout)
+ * and Bootstrap CSS (for auth page).
+ */
+/* --------------------------------- */
+/* Global Variables (Shared by Tailwind-based pages) */
+/* --------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+:root {
+    --bg-primary: #e5e7eb;
+    --text-primary: #1f2937;
+    --bg-card: #ffffff;
+    --text-card: #1f2937;
+    --primary-blue: #4a7cf5;
+    --primary-blue-hover: #3b82f6;
+    --accent-blue: var(--primary-blue);
+    --text-accent-blue: var(--primary-blue);
+    --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-card-hover: 0 25px 30px -5px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.1);
+    --border-card: #e5e7eb;
+    --bg-navbar: #ffffff;
+    --text-navbar: #1f2937;
+    --bg-footer: #1f2937;
+    --text-footer: #ffffff;
+}
+.dark-mode {
+    --bg-primary: #111827;
+    --text-primary: #f9fafb;
+    --bg-card: #1f2937;
+    --text-card: #f9fafb;
+    --primary-blue: #6366f1;
+    --primary-blue-hover: #818cf8;
+    --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-card-hover: 0 25px 30px -5px rgba(0, 0, 0, 0.4), 0 15px 15px -5px rgba(0, 0, 0, 0.3);
+    --border-card: #374151;
+    --bg-navbar: #111827;
+    --text-navbar: #f9fafb;
+    --bg-footer: #111827;
+    --text-footer: #f3f4f6;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* --------------------------------- */
+/* Abstract Background (Shared) */
+/* --------------------------------- */
+.abstract-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.1;
+}
+.abstract-bg::before {
+    content: '';
+    position: absolute;
+    top: 5%;
+    left: -20%;
+    width: 50vw;
+    height: 50vw;
+    background-color: var(--primary-blue);
+    border-radius: 10%;
+    transform: rotate(-10deg);
+}
+.abstract-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: -15%;
+    width: 30vw;
+    height: 30vw;
+    background-color: var(--primary-blue-hover);
+    border-radius: 10%;
+    transform: rotate(20deg);
+}
+/* --------------------------------- */
+/* Custom Tailwind Utility Classes (Shared) */
+/* --------------------------------- */
+.bg-primary-blue { background-color: var(--primary-blue); }
+.text-primary-blue { color: var(--primary-blue); }
+.hover\:bg-blue-600:hover { background-color: var(--primary-blue-hover); }
+.nav-icon-btn {
+    transition: all 0.3s ease;
+}
+.nav-icon-btn:hover {
+    transform: scale(1.1);
+    background-color: #f3f4f6;
+    color: var(--primary-blue);
+}
+.dark-mode .nav-icon-btn:hover {
+    background-color: #374151;
+}
+/* --------------------------------- */
+/* Enhanced Navbar Item Hover Effect */
+/* --------------------------------- */
+/* Ensure navbar items have consistent hover effects */
+header nav a,
+header nav button {
+    transition: color 0.3s ease, background-color 0.3s ease; /* Consistent transition */
+}
+/* Already defined in HTML, but reinforced here if needed */
+/* .text-gray-600:hover { color: var(--primary-blue); } */
+/* .dark:text-gray-300:hover { color: var(--primary-blue); } */
+/* --------------------------------- */
+/* E-commerce Specific Components */
+/* --------------------------------- */
+/* Card Shadow */
+.card-shadow {
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Removed border-color transition */
+    z-index: 10;
+    position: relative;
+    border: 4px solid transparent; /* Initial border state */
+}
+.card-shadow:hover {
+    transform: translateY(-4px) scale(1.01); /* Reduced movement */
+    box-shadow: var(--shadow-card-hover);
+    /* Removed border-color: var(--primary-blue); */
+}
+/* Add-to-cart button styling with subtle shimmer effect */
+.add-to-cart-btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.add-to-cart-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.75s ease-out;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.add-to-cart-btn:hover::before {
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    opacity: 0;
+}
+.add-to-cart-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(74, 124, 245, 0.4);
+}
+/* Toast message styling */
+#messageBox {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+#messageBox.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+/* Detail button styling */
+.detail-btn {
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    background-color: var(--bg-card);
+    transition: all 0.3s ease;
+}
+.detail-btn:hover {
+    background-color: var(--primary-blue);
+    color: var(--bg-card);
+    transform: scale(1.05);
+}
+/* Search input container styling */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+.search-input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    background-color: var(--bg-card);
+    color: var(--text-card);
+}
+.dark-mode .search-input {
+    border-color: #4b5563;
+    background-color: #374151;
+    color: #f9fafb;
+}
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(74, 124, 245, 0.2);
+}
+.search-submit-btn {
+    position: absolute;
+    right: 0.5rem; /* Distance from the right */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.3s ease;
+}
+.search-submit-btn:hover {
+    color: var(--primary-blue);
+}
+/* Search Icon Toggle Specific Styles */
+.search-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem; /* Add padding similar to input wrapper */
+    border: 1px solid transparent; /* Match initial input border */
+    border-radius: 9999px; /* Match input border radius */
+    cursor: pointer;
+    transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+.search-icon-wrapper:hover {
+    border-color: #d1d5db; /* Hover border color */
+    background-color: #f9fafb; /* Optional: light background on hover */
+}
+.dark-mode .search-icon-wrapper:hover {
+    border-color: #4b5563; /* Dark mode hover border color */
+    background-color: #374151; /* Dark mode background */
+}
+.search-icon {
+    color: #9ca3af; /* Default icon color */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+.search-icon:hover {
+    color: var(--primary-blue); /* Icon color on hover */
+}
+.search-input-wrapper {
+    position: absolute;
+    top: 0; /* Position it below the icon wrapper */
+    right: 0; /* Align to the right */
+    width: 500%;
+    max-width: 400px; /* Match the container's max-width */
+    z-index: 10; /* Ensure it appears above other elements */
+}
+.search-input-wrapper.hidden {
+    display: none;
+}
+/* Cart item checkbox styling */
+.cart-item-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    cursor: pointer;
+    accent-color: var(--primary-blue);
+}
+/* Order summary width */
+.order-summary-container {
+    width: 100%;
+}
+/* Account page full width */
+.account-full-width {
+    width: 100%;
+    max-width: none;
+}
+/* Consistent section alignment */
+.account-section {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+/* Peek Carousel Specific Styles (E-commerce Details View) */
+.peek-carousel-wrapper {
+    width: 100% !important;
+    overflow: hidden;
+    padding: 0 1rem;
+    position: relative;
+}
+.peek-carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    /* Ensure slides wrap correctly if needed, but width is controlled by slides themselves */
+    /* width: 100%; is set in JS */
+}
+.peek-carousel-slide {
+    width: 100% !important; /* Crucial for single slide view */
+    flex-shrink: 0;
+    flex: 0 0 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+.peek-carousel-slide-content {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    height: 450px;
+}
+.peek-carousel-slide-content img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+.peek-carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+}
+.peek-carousel-nav-btn:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+.peek-carousel-nav-btn.prev { left: 0.5rem; }
+.peek-carousel-nav-btn.next { right: 0.5rem; }
+.peek-carousel-dots {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    gap: 0.5rem;
+    /* Hide the old dots as we use the progress bar */
+    display: none;
+}
+.peek-carousel-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.peek-carousel-dot.active {
+    background-color: var(--primary-blue);
+    transform: scale(1.2);
+}
+/* New Progress Bar Styles */
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    margin-top: 0.5rem; /* Space above the bar */
+    overflow: hidden;
+    position: relative;
+}
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--primary-blue);
+    width: 0%; /* Controlled by JS */
+    transition: width 0.5s ease-in-out;
+}
+/* Checkout Page Specific Styles */
+.checkout-order-summary-separator {
+    border-top: 1px solid #e5e7eb;
+    margin: 1.5rem 0;
+}
+.dark-mode .checkout-order-summary-separator {
+    border-top-color: #374151;
+}
+/* --------------------------------- */
+/* Auth Page Specific Styles (Bootstrap-based) */
+/* --------------------------------- */
+/* Override Bootstrap Primary Color */
+.auth-page-body {
+    /* Using a specific class to scope body styles for auth.html */
+    color: #0A3F78; /* Dark primary text color from auth.html original */
+}
+.auth-page-root {
+    /* Set custom color for Bootstrap buttons and components */
+    --bs-primary: #4a7cf5; /* Primary Blue from Tailwind */
+    --bs-primary-rgb: 74, 124, 245;
+}
+.form-card {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    max-width: 450px;
+}
+/* Dynamic “Shards” Design - Geometric background shapes */
+.form-card::before,
+.form-card::after {
+    content: '';
+    position: absolute;
+    background-color: var(--bs-primary);
+    opacity: 0.1;
+    transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+}
+/* Top-left shard (Default/Login state) */
+.form-card::before {
+    top: -20px;
+    left: -20px;
+    transform: rotate(-15deg);
+}
+/* Bottom-right shard (Default/Login state) */
+.form-card::after {
+    bottom: -20px;
+    right: -20px;
+    transform: rotate(35deg);
+}
+/* 'Register' State */
+.form-card.state-register::before {
+    top: -60px;
+    left: -60px;
+    width: 250px;
+    height: 250px;
+    opacity: 0.05;
+    transform: rotate(-45deg) scale(1.1);
+}
+.form-card.state-register::after {
+    bottom: -60px;
+    right: -60px;
+    width: 250px;
+    height: 250px;
+    opacity: 0.05;
+    transform: rotate(70deg) scale(1.1);
+}
+/* 'Forgot Password' State */
+.form-card.state-forgot::before {
+    top: 50%;
+    left: -80px;
+    transform: translateY(-50%) rotate(15deg) scale(1.2);
+    width: 180px;
+    height: 180px;
+    opacity: 0.08;
+}
+.form-card.state-forgot::after {
+    bottom: 50%;
+    right: -80px;
+    transform: translateY(50%) rotate(-10deg) scale(1.2);
+    width: 180px;
+    height: 180px;
+    opacity: 0.08;
+}
+/* Floating label styles for Bootstrap */
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    opacity: 1;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+    background-color: white; /* Match card background */
+    padding: 0 4px;
+    border-radius: 4px;
+}
+.form-floating {
+    z-index: 20;
+    padding-top: 1.5rem !important; /* Fix for Bootstrap padding */
+}

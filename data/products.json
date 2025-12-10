@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop UltraSlim X1",
+    "description": "Portatile ad alte prestazioni con design in alluminio spazzolato.",
+    "fullDetails": "Dotato di processore Intel i9 di ultima generazione, 32GB di RAM DDR5 e SSD da 1TB velocissimo. Schermo OLED 14 pollici con risoluzione 4K e calibrazione del colore. Perfetto per l'editing video e la grafica professionale. Autonomia di 15 ore.",
+    "category": "Elettronica",
+    "price": 1299.99,
+    "rating": 4.9,
+    "reviews": 235,
+    "images": [
+      "assets/img/viohbxvioh.png",
+      "assets/img/vxdjc0vxdjc0vdd.png",
+      "assets/img/vxdjc0vxdjc0vww.png"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Smartphone Titan Pro",
+    "description": "Il futuro della comunicazione mobile. Massima potenza in un corpo elegante.",
+    "fullDetails": "Processore A18 Bionic, fotocamera tripla da 64MP con stabilizzazione ottica avanzata. Batteria da 5000mAh con ricarica rapida a 120W. Display Dynamic AMOLED da 6.7 pollici a 120Hz. Resistente all'acqua IP68. Dual SIM.",
+    "category": "Elettronica",
+    "price": 899.50,
+    "rating": 4.8,
+    "reviews": 312,
+    "images": [
+      "assets/img/ejsjvuejsjvuejsj.png",
+      "assets/img/smartphone_back.png",
+      "assets/img/smartphone_interface.png"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Cuffie Over-Ear ZeroNoise",
+    "description": "Cancellazione del rumore all'avanguardia per un'immersione totale nel suono.",
+    "fullDetails": "Cuffie con driver al neodimio da 40mm, cancellazione del rumore ibrida attiva con 4 microfoni. Durata batteria di 30 ore con ANC attivo. Comandi touch e custodia di ricarica rapida.",
+    "category": "Accessori",
+    "price": 199.99,
+    "rating": 4.6,
+    "reviews": 180,
+    "images": [
+      "assets/img/b27r29b27.png",
+      "assets/img/headphones_side.png",
+      "assets/img/headphones_case.png"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Tastiera Meccanica RGB",
+    "description": "Perfetta per il gaming e la digitazione veloce. Switch tattili e reattivi.",
+    "fullDetails": "Tastiera completa con 104 tasti, switch meccanici Cherry MX Brown. Retroilluminazione RGB personalizzabile tasto per tasto. Struttura in alluminio spazzolato. Anti-ghosting completo (N-Key Rollover). Cavo USB-C staccabile.",
+    "category": "Accessori",
+    "price": 119.00,
+    "rating": 4.7,
+    "reviews": 95,
+    "images": [
+      "assets/img/vxdjc0vxdjc0v.png",
+      "assets/img/vxdjc0vxdjc0vdd.png",
+      "assets/img/vxdjc0vxdjc0vww.png"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Sedia Ergonomica Pro",
+    "description": "Massimo comfort e supporto per lunghe sessioni di lavoro o gaming.",
+    "fullDetails": "Supporto lombare dinamico regolabile, poggiatesta 4D, braccioli regolabili in altezza e profondità. Rivestimento in rete traspirante ad alta resistenza. Base in alluminio lucido con ruote silenziose.",
+    "category": "Casa & Ufficio",
+    "price": 349.00,
+    "rating": 4.5,
+    "reviews": 150,
+    "images": [
+      "assets/img/gs8x8gs8x8gs8x8g.png",
+      "assets/img/chair_side.png",
+      "assets/img/chair_back.png"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Monitor Curvo 4K 32\"",
+    "description": "Immagini mozzafiato con colori vividi e risoluzione Ultra HD. Perfetta per streaming e videochiamate.",
+    "fullDetails": "Pannello VA curvo (1500R) con risoluzione 3840x2160. Frequenza di aggiornamento di 144Hz e tempo di risposta di 1ms (MPRT). Supporta HDR10 e FreeSync. Ingressi: 2x HDMI 2.1, 1x DisplayPort 1.4.",
+    "category": "Elettronica",
+    "price": 499.00,
+    "rating": 4.7,
+    "reviews": 62,
+    "images": [
+      "assets/img/olbc33olbc.png",
+      "assets/img/monitor_ports.png",
+      "assets/img/monitor_gaming.png"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Lampada da Tavolo LED",
+    "description": "Design minimalista ed elegante. Luminosità e temperatura di colore regolabili.",
+    "fullDetails": "Lampada da scrivania con braccio flessibile in silicone e base in alluminio. 5 modalità di colore e 5 livelli di luminosità. Porta di ricarica USB integrata. Durata LED: 50.000 ore.",
+    "category": "Casa & Ufficio",
+    "price": 49.99,
+    "rating": 4.3,
+    "reviews": 88,
+    "images": [
+      "assets/img/wnh88lwnh.png",
+      "assets/img/lamp_on.png",
+      "assets/img/lamp_off.png"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Webcam 4K Pro",
+    "description": "Immagini cristalline con risoluzione Ultra HD. Perfetta per streaming e videochiamate.",
+    "fullDetails": "Sensore CMOS avanzato con True 4K. Campo visivo regolabile. Microfoni omnidirezionali con riduzione del rumore. Copriobiettivo magnetico per la privacy. Clip universale per monitor e treppiedi.",
+    "category": "Accessori",
+    "price": 79.99,
+    "rating": 4.5,
+    "reviews": 130,
+    "images": [
+      "assets/img/ggpoapggpo.png",
+      "assets/img/webcam_side.png",
+      "assets/img/webcam_use.png"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Router Wi-Fi 6 Mesh",
+    "description": "Copertura totale e velocità elevatissime per tutta la casa.",
+    "fullDetails": "Sistema Mesh Tri-Band con tecnologia Wi-Fi 6 (802.11ax). Copertura fino a 500 mq. Velocità combinate fino a 6600 Mbps. Sicurezza avanzata WPA3. Facile configurazione tramite app mobile.",
+    "category": "Elettronica",
+    "price": 279.00,
+    "rating": 4.8,
+    "reviews": 110,
+    "images": [
+      "assets/img/ryuiihryuiihrdd.png",
+      "assets/img/router_side.png",
+      "assets/img/router_setup.png"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Hard Disk Esterno 4TB",
+    "description": "Archiviazione affidabile e veloce per i tuoi backup e dati importanti.",
+    "fullDetails": "Capacità di 4TB, interfaccia USB 3.2 Gen 1. Velocità di trasferimento dati fino a 150 MB/s. Design compatto e robusto. Software di backup automatico incluso. Compatibile con PC e Mac.",
+    "category": "Accessori",
+    "price": 99.00,
+    "rating": 4.4,
+    "reviews": 75,
+    "images": [
+      "assets/img/qgmas4qgmas.png",
+      "assets/img/hdd_side.png",
+      "assets/img/hdd_compact.png"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Set di 3 Penne Smart",
+    "description": "Penne digitali che trasferiscono le tue note cartacee sullo schermo in tempo reale.",
+    "fullDetails": "Tecnologia di digitalizzazione ad alta precisione. Include 3 penne con stili diversi (sfera, gel, feltro). Memoria interna per 100 pagine. Ricaricabile tramite USB-C. Funziona con app dedicata.",
+    "category": "Casa & Ufficio",
+    "price": 55.00,
+    "rating": 4.2,
+    "reviews": 45,
+    "images": [
+      "assets/img/w9qld5w9qld5w9.png",
+      "assets/img/pen_writing.png",
+      "assets/img/pen_app.png"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Smartwatch Veloce X",
+    "description": "Monitoraggio fitness avanzato e notifiche sempre a portata di polso.",
+    "fullDetails": "Display AMOLED da 1.65 pollici, GPS integrato e monitoraggio SpO2/ECG. Batteria da 7 giorni di autonomia. Resistenza all'acqua 5ATM. Cassa in alluminio aeronautico. Centinaia di quadranti personalizzabili.",
+    "category": "Elettronica",
+    "price": 149.99,
+    "rating": 4.7,
+    "reviews": 201,
+    "images": [
+      "assets/img/va6v52va6v.png",
+      "assets/img/smartwatch_strap.png",
+      "assets/img/smartwatch_screen.png"
+    ]
+  }
+]
