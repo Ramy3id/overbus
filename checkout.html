@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Lab - Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Accent color for primary actions
+                        'accent-blue': '#3b82f6', // Blue-500
+                    },
+                    fontFamily: {
+                        // Using the requested 'Inter' font
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div class="abstract-bg"></div>
+
+    <header class="bg-white dark:bg-gray-800 shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="e-commerce.html" class="text-2xl font-bold text-primary-blue">
+                        <img src="assets/img/logo_pl.webp" alt="Logo" class="h-10 inline-block mr-2">
+                        Project Lab
+                    </a>
+                </div>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="e-commerce.html" class="text-gray-600 hover:text-primary-blue dark:text-gray-300 dark:hover:text-primary-blue transition-colors duration-300 flex items-center"><i data-lucide="home" class="w-4 h-4 mr-1"></i> Home</a></li>
+                        <li><a href="e-commerce.html" class="text-gray-600 hover:text-primary-blue dark:text-gray-300 dark:hover:text-primary-blue transition-colors duration-300 flex items-center"><i data-lucide="smartphone" class="w-4 h-4 mr-1"></i> Prodotti</a></li>
+                        <li><a href="e-commerce.html" class="text-gray-600 hover:text-primary-blue dark:text-gray-300 dark:hover:text-primary-blue transition-colors duration-300 flex items-center"><i data-lucide="tag" class="w-4 h-4 mr-1"></i> Offerte Speciali</a></li>
+                        <li><a href="contatti.html" class="text-gray-600 hover:text-primary-blue dark:text-gray-300 dark:hover:text-primary-blue transition-colors duration-300 flex items-center"><i data-lucide="phone" class="w-4 h-4 mr-1"></i> Contatti</a></li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <div id="searchIconToggle" class="search-icon-wrapper nav-icon-btn">
+                            <i data-lucide="search" class="search-icon w-5 h-5"></i>
+                        </div>
+                        <div id="searchInputWrapper" class="search-input-wrapper hidden">
+                            <input type="text" id="searchInput" class="search-input" placeholder="Cerca prodotti..." oninput="filterProductsBySearch()">
+                        </div>
+                    </div>
+                    <a href="account.html" class="text-gray-600 hover:text-primary-blue dark:text-gray-300 dark:hover:text-primary-blue transition-colors duration-300 flex items-center">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </a>
+                    <a href="e-commerce.html" class="text-gray-600 hover:text-primary-blue dark:text-gray-300 dark:hover:text-primary-blue transition-colors duration-300 flex items-center relative">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span id="cartCounter" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                    <button onclick="toggleDarkMode()" class="text-gray-600 hover:text-primary-blue dark:text-gray-300 dark:hover:text-primary-blue transition-colors duration-300 flex items-center">
+                        <i id="darkModeIcon" data-lucide="moon" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-24">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <a href="e-commerce.html" class="inline-flex items-center text-primary-blue hover:underline mb-4">
+                <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Torna alla Home
+            </a>
+            <h1 class="text-3xl font-bold mb-8 text-primary-blue dark:text-blue-400">Checkout</h1>
+
+            <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+                <form id="checkoutForm" class="lg:col-span-2">
+                    <div id="shippingInfoSection" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl mb-6 border border-gray-200 dark:border-gray-700">
+                        <h2 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-gray-100 border-b pb-2">Dettagli di Spedizione</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nome Completo</label>
+                                <input type="text" id="fullName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 dark:border-gray-600 p-2">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Numero di Telefono</label>
+                                <input type="tel" id="phone" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 dark:border-gray-600 p-2">
+                            </div>
+
+                            <div>
+                                <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Indirizzo (Via/Strada)</label>
+                                <input type="text" id="address" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 dark:border-gray-600 p-2">
+                            </div>
+                            
+                            <div>
+                                <label for="houseNumber" class="block text-sm font-medium text-gray-700 dark:text-gray-300">N. Civico / Palazzina</label>
+                                <input type="text" id="houseNumber" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 dark:border-gray-600 p-2">
+                            </div>
+
+                            <div>
+                                <label for="city" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Città</label>
+                                <input type="text" id="city" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 dark:border-gray-600 p-2">
+                            </div>
+
+                            <div>
+                                <label for="zipCode" class="block text-sm font-medium text-gray-700 dark:text-gray-300">CAP</label>
+                                <input type="text" id="zipCode" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-blue focus:ring-primary-blue dark:bg-gray-700 dark:border-gray-600 p-2">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="checkoutButton" class="w-full bg-primary-blue hover:bg-primary-blue-hover text-white font-bold py-3 px-4 rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-6 shadow-md hover:shadow-lg transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-primary-blue/50" aria-label="Procedi al Pagamento Sicuro">
+                        Procedi al Pagamento Sicuro
+                    </button>
+                </form>
+
+                <div class="lg:col-span-1 mt-8 lg:mt-0">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 sticky top-24">
+                        <h2 class="text-2xl font-semibold mb-6 text-primary-blue border-b pb-2">Riepilogo Ordine</h2>
+                        
+                        <div id="orderSummaryDetails" class="space-y-3 mb-4">
+                            <p class="text-gray-500 dark:text-gray-400 italic">Caricamento...</p>
+                        </div>
+
+                        <hr class="my-4 border-gray-200 dark:border-gray-700">
+
+                        <div class="space-y-2 text-base">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600 dark:text-gray-300">Subtotale:</span>
+                                <span id="subtotal" class="font-medium">0,00 €</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600 dark:text-gray-300">Spedizione:</span>
+                                <span id="shippingCost" class="font-medium">0,00 €</span>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+                            <span class="text-xl font-bold text-gray-800 dark:text-gray-100">Totale:</span>
+                            <span id="totalPrice" class="text-xl font-bold text-red-500 dark:text-red-400">0,00 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-center items-center text-center border-b border-gray-700 pb-6 mb-6">
+                <div class="space-y-2 mb-6 md:mb-0 text-base md:w-full">
+                    <p class="flex items-center justify-center space-x-2 text-gray-300">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M12 12V2z"/><path d="M12 12V2z"/><path d="M12 12V2z"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="3"/></svg>
+                        <a href="https://maps.app.goo.gl/cAxBMYwfkDtAybXY7" target="_blank" class="hover:text-accent-blue transition duration-300 text-white font-medium">Via E. Fermi, 110/112 Brindisi</a>
+                    </p>
+                    <p class="flex items-center justify-center space-x-2 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3.06c0 .5-.41 1-1 1C10.51 20.98 3.02 13.49 3 2.99c0-.59.5-1 1-1h3.08c.32 0 .6.22.69.53l.8 3.5c.07.32-.05.65-.29.87l-1.4 1.4c1.23 2.62 3.86 5.25 6.48 6.48l1.4-1.4c.22-.24.55-.36.87-.29l3.5.8c.31.09.53.37.53.69z"/></svg>
+                        <a href="tel:0831550162" class="hover:text-accent-blue transition duration-300 font-medium text-white ml-1">Telefono: 0831/550162</a>
+                    </p>
+                    <p class="flex items-center justify-center space-x-2 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <a href="mailto:info@project-lab.it" class="hover:text-accent-blue transition duration-300 font-medium ml-1">Email: info@project-lab.it</a>
+                    </p>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="space-x-4 text-sm font-medium mb-4">
+                    <a href="terms/it_privacy.html" class="hover:text-accent-blue transition duration-300 text-gray-300">Informativa sulla Privacy</a>
+                    <span class="text-gray-500 font-light">|</span>
+                    <a href="terms/it_terms.html" class="hover:text-accent-blue transition duration-300 text-gray-300">Condizioni di Utilizzo</a>
+                </div>
+                <div class="text-sm text-gray-500 mt-4">
+                    Created with <span class="text-blue-500">♥</span><a href="https://www.project-lab.it/" target="_blank" rel="noopener noreferrer" class="hover:text-accent-blue transition duration-300"> Project Lab</a>.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="messageBox" class="hidden fixed top-4 right-4 p-4 rounded-lg text-white max-w-xs"></div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/checkout.js"></script>
+</body>
+</html>

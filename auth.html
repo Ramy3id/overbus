@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesso Azienda Software Professionale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        /* --------------------------------- */
+        /* General Styles and Professional Look */
+        /* --------------------------------- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e5e7eb; /* Neutral light gray background */
+            color: #1f2937; /* Dark primary text color */
+        }
+        
+        /* --------------------------------- */
+        /* Dynamic “Shards” Design - Geometric background shapes */
+        /* --------------------------------- */
+        .form-card {
+            position: relative;
+            overflow: hidden; /* Ensure background shapes are clipped */
+            z-index: 1; /* Keep content above the background shapes */
+        }
+        
+        .form-card::before,
+        .form-card::after {
+            content: '';
+            position: absolute;
+            background-color: #4a7cf5; /* Primary accent blue color */
+            opacity: 0.1; /* Light transparency */
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition for shape movement */
+            z-index: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 12px; /* Slight roundness for the shapes */
+        }
+
+        /* Top-left shard (Default/Login state) */
+        .form-card::before {
+            top: -20px;
+            left: -20px;
+            transform: rotate(-15deg);
+        }
+
+        /* Bottom-right shard (Default/Login state) */
+        .form-card::after {
+            bottom: -20px;
+            right: -20px;
+            transform: rotate(35deg);
+        }
+
+        /* 'Register' State (Shapes pull apart / expand for larger form) */
+        .form-card.state-register::before {
+            top: -60px;
+            left: -60px;
+            width: 250px;
+            height: 250px;
+            opacity: 0.05;
+            transform: rotate(-45deg) scale(1.1);
+        }
+        .form-card.state-register::after {
+            bottom: -60px;
+            right: -60px;
+            width: 250px;
+            height: 250px;
+            opacity: 0.05;
+            transform: rotate(70deg) scale(1.1);
+        }
+
+        /* 'Forgot Password' State (Sideways shift or distinct look) */
+        .form-card.state-forgot::before {
+            top: 50%;
+            left: -80px;
+            transform: translateY(-50%) rotate(0deg);
+        }
+        .form-card.state-forgot::after {
+            bottom: 50%;
+            right: -80px;
+            transform: translateY(50%) rotate(0deg);
+        }
+
+        /* --------------------------------- */
+        /* Custom CSS for Floating Label effect */
+        /* --------------------------------- */
+        .floating-input-group {
+            position: relative;
+            padding-top: 1rem; /* Space for the floating label */
+        }
+
+        .floating-label {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            pointer-events: none; /* Allows clicks through to the input */
+            font-size: 1rem;
+            color: #9ca3af;
+            background-color: transparent;
+            padding: 0 0.25rem;
+            z-index: 10;
+        }
+
+        /* State when input is focused or has content */
+        .floating-input:focus ~ .floating-label,
+        .floating-input:not(:placeholder-shown):not(.filled) ~ .floating-label {
+            top: 1rem;
+            font-size: 0.75rem;
+            color: #4a7cf5;
+            transform: translateY(-50%);
+            background-color: #ffffff;
+            padding: 0 0.25rem;
+            left: 0.75rem;
+        }
+        
+        /* Ensure 'select' and 'date' labels float correctly when filled */
+        .floating-input.filled ~ .floating-label {
+            top: 1rem;
+            font-size: 0.75rem;
+            color: #4a7cf5;
+            transform: translateY(-50%);
+            background-color: #ffffff;
+            padding: 0 0.25rem;
+            left: 0.75rem;
+        }
+
+        .floating-input {
+            z-index: 20; /* Ensure input field is clickable */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#4a7cf5', // Attractive blue accent color
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div id="formCard" class="form-card state-login w-full max-w-md bg-white text-gray-800 p-8 rounded-xl shadow-2xl border border-gray-100 transition-all duration-500">
+        
+        <div id="cardContentWrapper" class="relative z-10">
+            <div id="formContainer">
+                </div>
+        </div>
+        
+        <div id="messageBox" class="text-center text-sm mt-6 p-3 rounded-lg hidden relative z-20"></div>
+
+    </div>
+
+    <script>
+    // Base API URL
+    const API_URL = 'api/auth.php';
+
+    // Helper to extract URL params (for reset token)
+    const urlParams = new URLSearchParams(window.location.search);
+    const resetToken = urlParams.get('reset_token');
+
+    // Display message function
+    function showMessage(text, isSuccess = false) {
+        const messageBox = document.getElementById('messageBox');
+        messageBox.classList.remove('hidden', 'bg-red-500', 'bg-green-500', 'text-white', 'bg-primary-blue/10', 'text-primary-blue');
+
+        if (isSuccess) {
+            messageBox.classList.add('bg-green-500', 'text-white');
+        } else {
+            messageBox.classList.add('bg-red-500', 'text-white');
+        }
+        messageBox.innerHTML = text;
+        messageBox.classList.remove('hidden'); // Show it
+        
+        setTimeout(() => {
+            messageBox.classList.add('hidden');
+        }, 4000);
+    }
+
+    // State Management (Shape shifting)
+    function setFormState(state) {
+        const formCard = document.getElementById('formCard');
+        if (!formCard) return;
+        formCard.classList.remove('state-login', 'state-register', 'state-forgot');
+        if (state) formCard.classList.add(`state-${state}`);
+    }
+
+    // --- FORM RENDERING ---
+
+    function renderLoginForm() {
+        setFormState('login');
+        document.getElementById('formContainer').innerHTML = `
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-extrabold text-primary-blue">Project Lab</h1>
+                <p class="text-gray-500 mt-2">Accedi al tuo Account</p>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-6">
+                <div class="floating-input-group">
+                    <input type="email" id="email" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-blue">
+                    <label class="floating-label">Email</label>
+                </div>
+                <div class="floating-input-group">
+                    <input type="password" id="password" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-blue">
+                    <label class="floating-label">Password</label>
+                </div>
+                <div class="flex justify-end text-sm">
+                    <a href="#" onclick="handleForgotPassword(event)" class="text-primary-blue hover:text-blue-600 font-medium">Hai dimenticato la password?</a>
+                </div>
+                <button type="submit" class="w-full bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg">Accedi</button>
+            </form>
+            <div class="mt-8 text-center text-sm text-gray-500">
+                Non hai un account? <a href="#" onclick="handleRegister(event)" class="text-primary-blue font-semibold">Registrati ora</a>
+            </div>
+        `;
+    }
+
+    function renderRegisterForm() {
+        setFormState('register');
+        document.getElementById('formContainer').innerHTML = `
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-extrabold text-primary-blue">Crea un Account</h1>
+                <p class="text-gray-500 mt-2">Registrati per accedere.</p>
+            </div>
+            <form id="registerForm" onsubmit="handleRegistration(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="floating-input-group">
+                        <input type="text" id="regNome" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border">
+                        <label class="floating-label">Nome</label>
+                    </div>
+                    <div class="floating-input-group">
+                        <input type="text" id="regCognome" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border">
+                        <label class="floating-label">Cognome</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="floating-input-group">
+                        <input type="date" id="regDataNascita" required class="floating-input w-full px-4 py-3 rounded-lg border filled">
+                        <label class="floating-label">Data di Nascita</label>
+                    </div>
+                    <div class="floating-input-group">
+                        <select id="regGenere" required class="floating-input w-full px-4 py-3 rounded-lg border filled">
+                            <option value="uomo">Uomo</option>
+                            <option value="donna">Donna</option>
+                            <option value="altro">Altro</option>
+                        </select>
+                        <label class="floating-label">Genere</label>
+                    </div>
+                </div>
+                <div class="floating-input-group">
+                    <input type="email" id="regEmail" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border">
+                    <label class="floating-label">Email</label>
+                </div>
+                <div class="floating-input-group">
+                    <input type="tel" id="regTelefono" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border">
+                    <label class="floating-label">Telefono</label>
+                </div>
+                <div class="floating-input-group">
+                    <input type="password" id="regPassword" required minlength="6" placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border">
+                    <label class="floating-label">Password</label>
+                </div>
+                <button type="submit" class="w-full bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg">Registrati</button>
+            </form>
+            <div class="mt-8 text-center text-sm">
+                <a href="#" onclick="handleBackToLogin(event)" class="text-gray-500 hover:text-gray-700 font-medium underline">&larr; Torna al Login</a>
+            </div>
+        `;
+    }
+
+    function renderForgotPasswordForm() {
+        setFormState('forgot');
+        document.getElementById('formContainer').innerHTML = `
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-extrabold text-primary-blue">Recupero Password</h1>
+                <p class="text-gray-500 mt-2">Inserisci la tua email.</p>
+            </div>
+            <form onsubmit="sendResetLink(event)" class="space-y-6">
+                <div class="floating-input-group">
+                    <input type="email" id="resetEmail" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border">
+                    <label class="floating-label">Email</label>
+                </div>
+                <button type="submit" class="w-full bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg">Invia Link</button>
+            </form>
+            <div class="mt-8 text-center text-sm">
+                <a href="#" onclick="handleBackToLogin(event)" class="text-gray-500 underline">&larr; Torna al Login</a>
+            </div>
+        `;
+    }
+
+    function renderResetPasswordForm(token) {
+        setFormState('login'); // Re-use login shape
+        document.getElementById('formContainer').innerHTML = `
+             <div class="text-center mb-8">
+                <h1 class="text-4xl font-extrabold text-primary-blue">Nuova Password</h1>
+                <p class="text-gray-500 mt-2">Crea una nuova password sicura.</p>
+            </div>
+            <form onsubmit="doPasswordReset(event, '${token}')" class="space-y-6">
+                <div class="floating-input-group">
+                    <input type="password" id="newPassword" required placeholder=" " class="floating-input w-full px-4 py-3 rounded-lg border">
+                    <label class="floating-label">Nuova Password</label>
+                </div>
+                <button type="submit" class="w-full bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg">Aggiorna Password</button>
+            </form>
+        `;
+    }
+
+    // --- HANDLERS ---
+
+    // 1. LOGIN
+    async function handleLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const res = await fetch(API_URL + '?action=login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showMessage(data.message, true);
+                setTimeout(() => window.location.href = 'e-commerce.html', 1500);
+            } else {
+                showMessage(data.message, false);
+            }
+        } catch (err) {
+            showMessage("Errore di connessione.", false);
+        }
+    }
+
+    // 2. REGISTER
+    async function handleRegistration(e) {
+        e.preventDefault();
+        const formData = {
+            nome: document.getElementById('regNome').value,
+            cognome: document.getElementById('regCognome').value,
+            email: document.getElementById('regEmail').value,
+            telefono: document.getElementById('regTelefono').value,
+            genere: document.getElementById('regGenere').value,
+            dataNascita: document.getElementById('regDataNascita').value,
+            password: document.getElementById('regPassword').value
+        };
+
+        try {
+            const res = await fetch(API_URL + '?action=register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showMessage(data.message, true);
+                setTimeout(() => renderLoginForm(), 3000);
+            } else {
+                showMessage(data.message, false);
+            }
+        } catch (err) {
+            showMessage("Errore durante la registrazione.", false);
+        }
+    }
+
+    // 3. FORGOT PASSWORD REQUEST
+    async function sendResetLink(e) {
+        e.preventDefault();
+        const email = document.getElementById('resetEmail').value;
+        
+        try {
+            const res = await fetch(API_URL + '?action=forgot_password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            showMessage(data.message, data.success); // Always show success-like message for security
+        } catch (err) {
+            showMessage("Errore nel server.", false);
+        }
+    }
+
+    // 4. RESET PASSWORD ACTION
+    async function doPasswordReset(e, token) {
+        e.preventDefault();
+        const password = document.getElementById('newPassword').value;
+
+        try {
+            const res = await fetch(API_URL + '?action=reset_password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token, password })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showMessage(data.message, true);
+                setTimeout(() => window.location.href = 'auth.html', 2000); // Remove query params
+            } else {
+                showMessage(data.message, false);
+            }
+        } catch(err) {
+            showMessage("Errore.", false);
+        }
+    }
+
+    // Navigation Utils
+    window.handleRegister = (e) => { e.preventDefault(); renderRegisterForm(); };
+    window.handleForgotPassword = (e) => { e.preventDefault(); renderForgotPasswordForm(); };
+    window.handleBackToLogin = (e) => { e.preventDefault(); renderLoginForm(); };
+
+    // Init
+    window.onload = function() {
+        if (resetToken) {
+            renderResetPasswordForm(resetToken);
+        } else {
+            renderLoginForm();
+        }
+    };
+</script>
+</body>
+</html>
