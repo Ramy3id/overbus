@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overbus Framework | Soluzioni Software e Hardware per Industria 4.0 - Project Lab</title>
+    
+    <meta name="description" content="Overbus Framework di Project Lab: Soluzioni software e hardware avanzate per l'ottimizzazione dei processi produttivi, magazzino e automazione in ambito Industria 4.0.">
+    
+    <link rel="canonical" href="https://www.overbus.it/">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Accent color for primary actions
+                        'accent-blue': '#3b82f6', // Blue-500
+                    },
+                    fontFamily: {
+                        // Using the requested 'Inter' font
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate-50 - Very light background */
+        }
+        /* Custom style for the Services section background (Technological Dot Pattern) */
+        .bg-tech-pattern {
+            background-color: #f8fafc; /* Base color: Very Light Gray (Slate-50) */
+            /* Subtle dot pattern using SVG data URI for a clean tech feel */
+            background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 0 0' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='4' cy='4' r='0.5' fill='%23e2e8f0'/%3E%3C/svg%3E");
+            background-size: 8px 8px; /* Controls the density of the pattern */
+        }
+        
+        /* PERFORMANCE IMPROVEMENT: GPU Acceleration Class for smoother scrolling */
+        .gpu-accelerated {
+            /* Puts the element on its own compositor layer */
+            transform: translateZ(0); 
+            /* Tells the browser what properties are likely to change */
+            will-change: transform, filter, opacity; 
+        }
+
+        /* Custom Class for Overbus Image - Code Quality and PERFORMANCE Improvement */
+        .img-overbus-shadow {
+            background-color: transparent;
+            filter: drop-shadow(2px 4px 6px blue);
+            /* Apply GPU acceleration to the shadow to improve repaint performance */
+            transform: translateZ(0); 
+            will-change: filter;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <nav class="bg-white shadow-md border-b border-gray-100 sticky top-0 z-50 gpu-accelerated">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#hero" class="flex items-center space-x-2 text-2xl font-bold text-gray-900 hover:text-accent-blue transition duration-300">
+                        <img src="assets/img/logo_pl.webp" 
+                             alt="Project Lab Logo" 
+                             width="64"
+                             height="64"
+                             class="w-16 h-16 object-contain">
+                        <span class="hidden md:block">Overbus</span>
+                        <span class="block md:hidden sr-only">Overbus</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex md:items-center md:space-x-2 lg:space-x-4">
+                    <a href="#hero" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <span>Home</span>
+                    </a>
+                    <a href="Chi-Siamo.html" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-2-2z"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span>Chi Siamo</span>
+                    </a>
+                    <a href="contatti.html" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <span>Contatti</span>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <a href="e-commerce.html" class="bg-accent-blue text-white hover:bg-blue-600 px-3 py-2 ml-4 rounded-lg font-semibold transition duration-300 shadow-md hover:shadow-lg flex items-center space-x-1.5" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span>Shop</span>
+                    </a>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-lg text-accent-blue hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-blue transition duration-300" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-open-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue block px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>Home</span>
+                </a>
+                <a href="chi-siamo.html" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue block px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-2 2v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span>Chi Siamo</span>
+                </a>
+                <a href="contatti.html" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue block px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <span>Contatti</span>
+                </a>
+                <a href="#" class="text-gray-700 hover:bg-gray-100 hover:text-accent-blue block px-3 py-2 rounded-lg font-medium transition duration-300 flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    <span>Download</span>
+                </a>
+                <a href="e-commerce.html" class="bg-accent-blue text-white hover:bg-blue-600 block px-3 py-2 rounded-lg font-semibold transition duration-300 mt-2 flex items-center space-x-2" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span>Shop</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow">
+        <section id="hero" class="relative bg-gray-50 pt-20 pb-24 overflow-hidden min-h-[50vh] flex items-center">
+            <div class="absolute inset-0 z-0 bg-gray-50 gpu-accelerated">
+                <img src="assets/img/min.webp" alt="Professional abstract tech code background" width="1920" height="1080"
+                    loading="eager" onerror="this.style.display='none'"
+                    class="w-full h-full object-cover opacity-1 transition duration-500">
+                <div class="absolute inset-0 bg-white opacity-70 mix-blend-lighten"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-50 via-white/50 to-transparent"></div>
+            </div>
+            <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-8">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 tracking-tight mb-4 leading-tight">
+                    Overbus Framework
+                </h1>
+                <p class="text-2xl sm:text-3xl text-gray-700 font-medium uppercase mb-8">
+                    <span class="inline-block px-3 py-1 rounded-full bg-accent-blue text-white shadow-lg">Project Lab</span>
+                </p>
+                <div class="flex flex-wrap justify-center space-x-2 sm:space-x-4 text-base sm:text-lg font-semibold text-gray-700 mt-4">
+                    <a href="assets/pdf/mainstore.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-accent-blue transition duration-300 rounded-lg p-1">MainStore</a>
+                    <span class="text-gray-400 font-light mx-1">|</span>
+                    <a href="assets/pdf/mainlock.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-accent-blue transition duration-300 rounded-lg p-1">Mainlock</a>
+                    <span class="text-gray-400 font-light mx-1">|</span>
+                    <a href="assets/pdf/mbx.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-accent-blue transition duration-300 rounded-lg p-1">MBX</a>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center -mt-16 sm:-mt-20 relative z-20">
+            <img src="assets/img/overbus.png"
+                 alt="Overbus Framework Logo"
+                 width="384"
+                 height="96"
+                 class="mx-auto w-64 sm:w-80 md:w-96 h-auto object-contain drop-shadow-lg img-overbus-shadow">
+        </section>
+        <section id="chi-siamo" class="py-16 bg-white sm:py-24 bg-tech-pattern">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-12 sm:text-5xl lg:text-6xl">
+                    Chi Siamo
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md border-t-4 border-accent-blue hover:shadow-lg transition duration-300">
+                        <div class="flex justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-shield-check text-accent-blue">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">La Nostra Missione</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Unione di persone con oltre vent'anni di esperienza in Tecnologia dell'Informazione e Comunicazione (ICT), sistemi di automazione e consulenza, per sviluppare soluzioni con elevati standard di qualità.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md border-t-4 border-accent-blue hover:shadow-lg transition duration-300">
+                        <div class="flex justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target text-accent-blue">
+                                <circle cx="12" cy="12" r="8" />
+                                <circle cx="12" cy="12" r="3" />
+                                <line x1="12" y1="2" x2="12" y2="5" />
+                                <line x1="12" y1="19" x2="12" y2="22" />
+                                <line x1="2" y1="12" x2="5" y2="12" />
+                                <line x1="19" y1="12" x2="22" y2="12" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">La Nostra Visione</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Siamo focalizzati sulla ricerca, la progettazione e la realizzazione di soluzioni informatiche innovative, mirate a migliorare e ottimizzare i processi produttivi aziendali dei nostri clienti in tutti i settori.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md border-t-4 border-accent-blue hover:shadow-lg transition duration-300">
+                        <div class="flex justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-activity text-accent-blue">
+                                <path d="M22 12h-4l-3 7-6-14-3 7H2" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">I Nostri Valori</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            I principi fondamentali che guidano la nostra attività sono la Strategia, la Qualità, la Crescita, l'Innovazione e la Trasparenza, garantendo affidabilità e correttezza in ogni progetto.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-16">
+                    <a href="chi-siamo.html" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-semibold rounded-lg shadow-md text-white bg-accent-blue hover:bg-blue-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                        Scopri di più sui nostri servizi
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="aree-chiave" class="relative py-20 sm:py-28 text-white overflow-hidden">
+            <div class="absolute inset-0 z-0 gpu-accelerated">
+                <img src="assets/img/nostre-aree.webp"
+                     alt="Abstract circuit board and data flow background"
+                     width="1920"
+                     height="1080"
+                     loading="lazy"
+                     onerror="this.style.display='none'"
+                     class="w-full h-full object-cover opacity-1">
+                <div class="absolute inset-0 bg-gray-900 opacity-90"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-center mb-16 sm:text-5xl lg:text-6xl">
+                    Le Nostre Aree Chiave
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800/80 rounded-lg shadow-lg border border-accent-blue/50 hover:bg-gray-700/80 transition duration-300 transform hover:-translate-y-2">
+                        <div class="p-4 bg-accent-blue rounded-full mb-5 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu text-white"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 uppercase tracking-wider">HARDWARE</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Soluzioni integrate per l'infrastruttura IT e sistemi di controllo fisico.
+                        </p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center text-center p-6 bg-gray-800/80 rounded-lg shadow-lg border border-accent-blue/50 hover:bg-gray-700/80 transition duration-300 transform hover:-translate-y-2">
+                        <div class="p-4 bg-accent-blue rounded-full mb-5 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot text-white">
+                            <path d="M12 8V4" />
+                            <rect x="3" y="8" width="18" height="12" rx="2" />
+                            <circle cx="8" cy="14" r="2" />
+                            <circle cx="16" cy="14" r="2" />
+                        </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 uppercase tracking-wider">AUTOMAZIONE</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Sistemi intelligenti per l'ottimizzazione e il controllo dei processi industriali.
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800/80 rounded-lg shadow-lg border border-accent-blue/50 hover:bg-gray-700/80 transition duration-300 transform hover:-translate-y-2">
+                        <div class="p-4 bg-accent-blue rounded-full mb-5 shadow-lg">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-factory"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 uppercase tracking-wider">PRODUZIONE</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Tecnologie avanzate per la gestione efficiente del ciclo produttivo.
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800/80 rounded-lg shadow-lg border border-accent-blue/50 hover:bg-gray-700/80 transition duration-300 transform hover:-translate-y-2">
+                        <div class="p-4 bg-accent-blue rounded-full mb-5 shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-network"><circle cx="12" cy="12" r="10"/><path d="M12 12v6"/><path d="m8 12 4-4 4 4"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3 uppercase tracking-wider">5G NETWORK</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Soluzioni di connettività avanzata per l'implementazione di tecnologie IoT e comunicazioni ad alta velocità.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-20 sm:py-28 bg-tech-pattern">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-6 sm:text-5xl lg:text-6xl">
+                    Il software gestionale per l'Industria 4.0
+                </h2>
+                <p class="text-xl text-gray-600 mb-16 max-w-3xl mx-auto">
+                    Trasformiamo i processi produttivi della tua azienda con soluzioni digitali avanzate.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 text-left">
+                    <div class="group relative p-8 bg-white rounded-xl shadow-xl border-t-4 border-accent-blue hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-[1.02]">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="p-3 rounded-full bg-accent-blue/10 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2V6a2 2 0 0 0 2 2h4"/><line x1="10" x2="15" y1="12" y2="12"/><line x1="10" x2="14" y1="16" y2="16"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Cosa fa</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Project Lab supporta l’intero processo della Industria 4.0: la progettazione, la supply chain e l’integrazione IoT nella produzione. Grazie a questo software, è possibile sfruttare soluzioni dedicate all’ambiente produttivo e basate su tecniche all’avanguardia.
+                        </p>
+                    </div>
+                    <div class="group relative p-8 bg-white rounded-xl shadow-xl border-t-4 border-accent-blue hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-[1.02]">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div
+                                class="p-3 rounded-full bg-accent-blue/10 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-target">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">A chi si rivolge</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Project Lab si rivolge a tutte quelle aziende che stanno cercando il miglior software gestionale per l’industria 4.0 e che hanno compreso l’importanza della trasformazione digitale, nonché del nuovo ruolo del lavoratore nel processo produttivo digitale.
+                        </p>
+                    </div>
+                    <div class="group relative p-8 bg-white rounded-xl shadow-xl border-t-4 border-accent-blue hover:shadow-2xl transition duration-300 ease-in-out transform hover:scale-[1.02]">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div
+                                class="p-3 rounded-full bg-accent-blue/10 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path
+                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                </path>
+                            </svg>
+                        </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Come lo fa</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Project Lab consente di migliorare le performance dell’intera area produttiva. Viene semplificata la gestione operativa di ogni area aziendale, si ottimizzano risorse e materiali, integrando nuove tecnologie produttive e migliorando la qualità dei prodotti.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="servizi" class="relative py-24 sm:py-32 bg-white overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-gray-50 gpu-accelerated">
+                <img src="assets/img/servizi.webp"
+                     alt="Screens with abstract data interface, no people"
+                     width="1920"
+                     height="1080"
+                     loading="lazy"
+                     onerror="this.style.display='none'"
+                     class="w-full h-full object-cover opacity-1 transition duration-500">
+                <div class="absolute inset-0 bg-white opacity-85"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-16 sm:text-5xl lg:text-6xl">
+                    Servizi e Soluzioni Tecnologiche
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 text-left">
+                    <div class="p-8 bg-white rounded-xl shadow-lg border-l-8 border-accent-blue hover:shadow-xl transition duration-300 flex items-start space-x-6">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center text-2xl font-bold rounded-full bg-accent-blue text-white shadow-md">
+                            01
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Sicurezza</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Servizi di consulenza per la realizzazione di soluzioni di sicurezza informatica, per il controllo automatico degli accessi, anti-intrusione e delle presenze del personale.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-white rounded-xl shadow-lg border-l-8 border-accent-blue hover:shadow-xl transition duration-300 flex items-start space-x-6">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center text-2xl font-bold rounded-full bg-accent-blue text-white shadow-md">
+                            02
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Controllo</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Sistemi per il controllo e l'analisi dei processi aziendali di gestione e di produzione industriale.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-white rounded-xl shadow-lg border-l-8 border-accent-blue hover:shadow-xl transition duration-300 flex items-start space-x-6">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center text-2xl font-bold rounded-full bg-accent-blue text-white shadow-md">
+                            03
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Monitoraggio</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Sistemi di monitoraggio mediante appositi strumenti, allo scopo di controllare la situazione e l'andamento dell'apparecchiature.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-white rounded-xl shadow-lg border-l-8 border-accent-blue hover:shadow-xl transition duration-300 flex items-start space-x-6">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center text-2xl font-bold rounded-full bg-accent-blue text-white shadow-md">
+                            04
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Supporto</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Servizi di consulenza per la manutenzione e assistenza delle soluzioni informatiche proposte.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="software-hardware" class="py-20 sm:py-28 bg-tech-pattern">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-16 sm:text-5xl lg:text-6xl text-center">
+                    Software e Hardware
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="group bg-gray-50 p-8 rounded-xl shadow-lg border-t-4 border-accent-blue hover:shadow-xl transition duration-300">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div
+                                class="p-3 rounded-full bg-accent-blue/10 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                                    class="lucide lucide-code group-hover:stroke-white transition duration-300">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Software</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            La gestione della produzione, il controllo di processo, la movimentazione e lo stoccaggio delle merci, hanno acquistato, negli ultimi anni, una importanza sempre maggiore in ottica di miglioramento continuo della qualità dei prodotti realizzati e della efficienza dei processi aziendali. L'utilizzo di moderne tecnologie, quali RFID, marcature tramite codici a barre, ecc..
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Unite alla sempre maggiore potenza di calcolo dei sistemi di elaborazione elettronica dei dati, consentono alle aziende che operano in quasi tutti i settori produttivi di adottare soluzioni sempre più automatizzate ed affidabili, permettendo di controllare tutte le fasi dei propri processi produttivi, dall'approvvigionamento delle materie prime alla consegna del prodotto finito.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mt-4">
+                            La gestione della produzione si trasforma in commessa dopo la redazione del preventivo, ove richiesto, generando gli ordini di produzione necessari alla sua realizzazione. La programmazione ed il monitoraggio dello stato di avanzamento della commessa viene supportato dalla gestione delle singole fasi di lavorazione del processo e dei fabbisogni di materiali, risorse umane e strumentali.
+                        </p>
+                    </div>
+                    <div class="group bg-gray-50 p-8 rounded-xl shadow-lg border-t-4 border-accent-blue hover:shadow-xl transition duration-300">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div
+                                class="p-3 rounded-full bg-accent-blue/10 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3b82f6"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                                class="lucide lucide-code group-hover:stroke-white transition duration-300">
+                                <rect x="4" y="4" width="16" height="16" rx="2" />
+                                <path d="M9 9h6v6H9z" />
+                                <path d="M15 2v2" />
+                                <path d="M15 20v2" />
+                                <path d="M2 15h2" />
+                                <path d="M2 9h2" />
+                                <path d="M20 15h2" />
+                                <path d="M20 9h2" />
+                                <path d="M9 2v2" />
+                                <path d="M9 20v2" />
+                            </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Hardware</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            La soluzione MainLock rispecchia le principali caratteristiche di un sistema di controllo accessi e di rilevazione presenze offrendo una completa gestione degli utenti e delle aree da controllare attraverso una intuitiva e flessibile interfaccia web.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="soluzioni-hardware-software" class="relative py-20 sm:py-28 overflow-hidden bg-white">
+            <div class="absolute inset-0 z-0 gpu-accelerated">
+                <img src="assets/img/soluzioni.webp"
+                     alt="Screens with abstract data interface, no people"
+                     width="1920"
+                     height="1080"
+                     loading="lazy"
+                     onerror="this.style.display='none'"
+                     class="w-full h-full object-cover opacity-1">
+                <div class="absolute inset-0 bg-white opacity-85"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-16 sm:text-5xl lg:text-6xl border-b border-gray-200 pb-4">
+                    Soluzioni Hardware e Software
+                </h2>
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-2xl border-t-8 border-emerald-500 flex flex-col h-full hover:shadow-3xl transition duration-300">
+                        <h3 class="text-3xl font-bold text-emerald-700 mb-4 flex items-center justify-center space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-archive">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="9" y1="21" x2="9" y2="9"></line>
+                            </svg>
+                            <span>Mainstore</span>
+                        </h3>
+                        <p class="text-gray-700 mb-6 flex-grow text-left">
+                            Il sistema gestionale avanzato per la completa ottimizzazione di magazzino, produzione e processi amministrativi.
+                        </p>
+                        <ul class="space-y-3 text-lg text-gray-800 text-left">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Magazzino
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Produzione
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Ordini
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Fattura Elettronica
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-2xl border-t-8 border-amber-500 flex flex-col h-full hover:shadow-3xl transition duration-300">
+                        <h3 class="text-3xl font-bold text-amber-700 mb-4 flex items-center justify-center space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            <span>Mainlock</span>
+                        </h3>
+                        <p class="text-gray-700 mb-6 flex-grow text-left">
+                            Soluzioni hardware e software integrate per il controllo sicuro degli accessi e la gestione delle presenze.
+                        </p>
+                        <ul class="space-y-3 text-lg text-gray-800 text-left">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Fornitura completa
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Controllo accessi
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Presenze
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-2xl border-t-8 border-red-500 flex flex-col h-full hover:shadow-3xl transition duration-300">
+                        <h3 class="text-3xl font-bold text-red-700 mb-4 flex items-center justify-center space-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot"><path d="M12 8V4H8"/><path d="M22 17a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.5a2.5 2.5 0 0 1 2.5-2.5h15A2.5 2.5 0 0 1 22 7.5z"/><path d="M10 19v-3"/><path d="M14 19v-3"/><path d="M8 12h8"/></svg>
+                            <span>MBX</span>
+                        </h3>
+                        <p class="text-gray-700 mb-6 flex-grow text-left">
+                            Integrazione di sistemi e dispositivi smart per l'automazione industriale avanzata (Industria 4.0).
+                        </p>
+                        <ul class="space-y-3 text-lg text-gray-800 text-left">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Industria 4.0
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Dispositivi di montaggio
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="tecnologia-futuro" class="py-20 sm:py-28 bg-tech-pattern">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-gray-900 mb-16 sm:text-5xl lg:text-6xl text-center">
+                    Tecnologia del Futuro
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 text-left">
+                    <div class="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-blue hover:shadow-xl transition duration-300 flex flex-col">
+                        <div class="flex items-center space-x-4 mb-5">
+                            <div class="flex-shrink-0 p-3 rounded-full bg-accent-blue/10 text-accent-blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Sviluppo Software</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            Siamo in grado di sviluppare applicazioni web e mobile personalizzate capaci di soddisfare ogni esigenza, partendo dall’analisi dei vostri processi aziendali e traducendoli in strumenti di lavoro intuitivi e funzionali. Garantiamo ai nostri clienti software gestionali di qualità in grado di rispondere alle esigenze di mercato. Siamo in grado inoltre, di sviluppare soluzioni hardware in grado di interfacciarsi con diversi dispositivi e di elaborare i dati direttamente sui nostri software.
+                        </p>
+                    </div>
+                    <div class="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-blue hover:shadow-xl transition duration-300 flex flex-col">
+                        <div class="flex items-center space-x-4 mb-5">
+                            <div class="flex-shrink-0 p-3 rounded-full bg-accent-blue/10 text-accent-blue">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb">
+                                    <line x1="12" y1="2" x2="12" y2="6"></line>
+                                    <line x1="12" y1="18" x2="12" y2="22"></line>
+                                    <line x1="6" y1="12" x2="2" y2="12"></line>
+                                    <line x1="22" y1="12" x2="18" y2="12"></line>
+                                    <path d="M9 18h6M10 22h4a2 2 0 0 0 2-2h-8a2 2 0 0 0 2 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">L'Innovazione è Semplicità</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed text-lg">
+                            Spesso cerchiamo l’innovazione in qualche nuova tendenza o tecnologia . Ma innovare non vuol dire solo introdurre qualcosa di tecnologico: innovazione è la capacità di cambiare l’esperienza utente, migliorandola, in modo semplice, creando un processo senza frizioni e capace di rendere l’interazione semplice, fruibile e memorabile.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="intuitivol" class="relative py-20 sm:py-28 overflow-hidden flex items-center justify-center min-h-[50vh]">
+            <div class="absolute inset-0 z-0 gpu-accelerated">
+                <img src="assets/img/intuitivo.webp"
+                     alt="Interface web intuitive e flexible"
+                     width="1920"
+                     height="1080"
+                     loading="lazy"
+                     onerror="this.style.display='none'"
+                     class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gray-900 opacity-60"></div>
+            </div>
+            <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="bg-white/90 p-8 md:p-12 rounded-xl shadow-2xl border-t-8 border-accent-blue backdrop-blur-sm">
+                    <h2 id="contatti" class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 border-b-4 border-blue-200 pb-3 inline-block">
+                        INTUITIVO
+                    </h2>
+                    <p class="text-gray-700 text-lg md:text-xl leading-relaxed mt-4">
+                        L'interfaccia web, intuitiva e flessibile, unita all'integrazione con i sistemi di rilevazione delle lavorazioni, delle merci e del personale garantiscono efficienza ed ottimizzazione delle risorse.
+                    </p>
+                    <a href="mailto:info@project-lab.it" class="inline-flex items-center justify-center mt-8 px-6 py-3 border border-transparent text-base font-semibold rounded-lg shadow-lg text-white bg-accent-blue hover:bg-blue-600 transition duration-300">
+                        Contattaci Ora
+                    </a>
+                </div>
+            </div>
+        </section>
+        </main>
+    <footer class="bg-gray-900 text-white mt-auto border-t border-accent-blue/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col md:flex-row justify-center items-center text-center border-b border-gray-700 pb-6 mb-6">
+                <div class="space-y-2 mb-6 md:mb-0 text-base md:w-full">
+                    <p class="flex items-center justify-center space-x-2 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M12 12V2z"/><path d="M12 12V2z"/><path d="M12 12V2z"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="3"/></svg>
+                        <a href="https://maps.app.goo.gl/cAxBMYwfkDtAybXY7" target="_blank" rel="noopener noreferrer" class="hover:text-accent-blue transition duration-300 text-white font-medium">Via E. Fermi, 110/112 Brindisi</a>
+                    </p>
+                    <p class="flex items-center justify-center space-x-2 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3.06c0 .5-.41 1-1 1C10.51 20.98 3.02 13.49 3 2.99c0-.59.5-1 1-1h3.08c.32 0 .6.22.69.53l.8 3.5c.07.32-.05.65-.29.87l-1.4 1.4c1.23 2.62 3.86 5.25 6.48 6.48l1.4-1.4c.22-.24.55-.36.87-.29l3.5.8c.31.09.53.37.53.69z"/></svg>
+                        <a href="tel:0831550162" class="hover:text-accent-blue transition duration-300 font-medium text-white ml-1">Telefono: 0831/550162</a>
+                    </p>
+                    <p class="flex items-center justify-center space-x-2 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <a href="mailto:info@project-lab.it" class="hover:text-accent-blue transition duration-300 font-medium ml-1">Email: info@project-lab.it</a>
+                    </p>
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="space-x-4 text-sm font-medium mb-4">
+                    <a href="terms/it_privacy.html" class="hover:text-accent-blue transition duration-300 text-gray-300">Informativa sulla Privacy</a>
+                    <span class="text-gray-500 font-light">|</span>
+                    <a href="terms/it_terms.html" class="hover:text-accent-blue transition duration-300 text-gray-300">Condizioni di Utilizzo</a>
+                </div>
+                <div class="text-sm text-gray-500 mt-4">
+                    Created with <span class="text-blue-500">♥</span><a href="https://www.project-lab.it/" target="_blank" rel="noopener noreferrer" class="hover:text-accent-blue transition duration-300"> Project Lab</a>.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Get references to the button and the menu div
+        const button = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        // Get references to the specific icons
+        const openIcon = document.getElementById('menu-open-icon');
+        const closeIcon = document.getElementById('menu-close-icon');
+        // Function to toggle the menu visibility and button icon
+        function toggleMobileMenu() {
+            // Toggle the 'hidden' class on the menu
+            menu.classList.toggle('hidden');
+            // Toggle the icons (hamburger vs. close)
+            openIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            // Toggle aria-expanded attribute for accessibility
+            const isExpanded = button.getAttribute('aria-expanded') === 'true' || false;
+            button.setAttribute('aria-expanded', !isExpanded);
+        }
+        // Add event listener to the button
+        button.addEventListener('click', toggleMobileMenu);
+        // Close the mobile menu when a link is clicked (improves UX)
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Check if the menu is open before closing
+                if (!menu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
